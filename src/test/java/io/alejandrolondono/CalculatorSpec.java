@@ -45,13 +45,35 @@ public class CalculatorSpec {
 
     @Test
     public void divideByZeroTest(){
-        double expected =4 ;
-        double actual = 4;
+        boolean condition = true;
         try {
-            actual = calculator.divideWithException(50,0);
+           double actual = calculator.divideWithException(50,0);
         } catch (DivisionByZeroException e) {
             e.printStackTrace();
         }
-        assertEquals("result should be "+expected,expected,actual,err);
+        assertTrue(condition);
+    }
+
+    @Test
+    public void squareRootTest(){
+        double expected = 3;
+        double actual = 0;
+       try{
+           actual = calculator.sqrt(9);
+       }catch(imaginaryException e){
+            e.printStackTrace();
+       }
+        assertEquals(expected,actual,0.1);
+    }
+
+    @Test
+    public void squareRootImaginaryTest(){
+        boolean cond = true;
+        try{
+            double actual = calculator.sqrt(-9);
+        }catch(imaginaryException e){
+            e.printStackTrace();
+        }
+        assertTrue(cond);
     }
 }
